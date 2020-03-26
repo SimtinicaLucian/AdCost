@@ -1,6 +1,6 @@
-package com.example.dfitness.resource;
-import com.example.dfitness.model.Cheltuieli;
-import com.example.dfitness.repository.ProductRepository;
+package com.example.adcost.resource;
+import com.example.adcost.model.Cheltuieli;
+import com.example.adcost.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

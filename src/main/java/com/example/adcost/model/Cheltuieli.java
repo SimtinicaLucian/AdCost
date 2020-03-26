@@ -1,4 +1,4 @@
-package com.example.dfitness.model;
+package com.example.adcost.model;
 
 
 import lombok.Getter;
