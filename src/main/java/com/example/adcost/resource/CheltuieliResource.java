@@ -1,6 +1,6 @@
 package com.example.adcost.resource;
 import com.example.adcost.model.Cheltuieli;
-import com.example.adcost.repository.ProductRepository;
+import com.example.adcost.repository.CheltuieliRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -32,30 +32,31 @@ import java.util.Optional;
 //
 
 @RestController
-public class ProductResource {
+@RequestMapping(value = "/cheltuieli/")
+public class CheltuieliResource {
 
     @Autowired
-    private ProductRepository productRepository;
+    private CheltuieliRepository cheltuieliRepository;
 
     @PostMapping("/addBook")
-    public String saveBook(@RequestBody Cheltuieli cheltuieli) {
-        productRepository.save(cheltuieli);
-        return "Added book with id : " ;
+    public List<Cheltuieli> saveBook(@RequestBody Cheltuieli cheltuieli) {
+        cheltuieliRepository.save(cheltuieli);
+        return cheltuieliRepository.findAll();
     }
 
     @GetMapping("/findAllBooks")
     public List<Cheltuieli> getBooks() {
-        return productRepository.findAll();
+        return cheltuieliRepository.findAll();
     }
 
     @GetMapping("/findAllBooks/{id}")
-    public Optional<Cheltuieli> getBook(@PathVariable int id) {
-        return productRepository.findById(id);
+    public Optional<Cheltuieli> getBook(@PathVariable String id) {
+        return cheltuieliRepository.findById(id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteBook(@PathVariable int id) {
-        productRepository.deleteById(id);
+    public String deleteBook(@PathVariable String id) {
+        cheltuieliRepository.deleteById(id);
         return "book deleted with id : " + id;
     }
 

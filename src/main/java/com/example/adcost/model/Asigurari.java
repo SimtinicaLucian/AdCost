@@ -9,17 +9,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 
 
-@Document(collection = "Cheltuieli")
-public class Cheltuieli {
+@Document(collection = "Asigurari")
+public class Asigurari {
 
-        private String data;
-        private String Furnizor;
-        private String auto;
-        private double sumaTotala;
-
-
-
-
-
-
+    private String data;
+    private String Furnizor;
+    private int politaNr;
+    private String auto;
+    private double sumaTotala;
 }
+
+
