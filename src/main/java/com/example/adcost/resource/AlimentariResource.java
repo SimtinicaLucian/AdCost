@@ -1,10 +1,12 @@
 package com.example.adcost.resource;
+import com.example.adcost.Service.AlimentariService;
+import com.example.adcost.Service.AlimentariService;
 import com.example.adcost.model.Alimentari;
-import com.example.adcost.model.Cheltuieli;
 import com.example.adcost.repository.AlimentariRepository;
-import com.example.adcost.repository.CheltuieliRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.FastByteArrayOutputStream;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -39,27 +41,55 @@ public class AlimentariResource {
 
     @Autowired
     private AlimentariRepository alimentariRepository;
+//    private AlimentariService factService;
 
-    @PostMapping("/addBook")
-    public List<Alimentari> saveBook(@RequestBody Alimentari alimentari) {
+
+    @PostMapping("/add")
+    public List<Alimentari> saveAlimentare(@RequestBody Alimentari alimentari) {
+
+        List<Alimentari> listSearch = searchByNumber(alimentari.getNumber());
+        if(listSearch.size() >= 1){
+            return null;
+        }
+
         alimentariRepository.save(alimentari);
+
         return alimentariRepository.findAll();
     }
 
-    @GetMapping("/findAllBooks")
-    public List<Alimentari> getBooks() {
+    @GetMapping("/searchAll")
+    public List<Alimentari> getAlimentari() {
         return alimentariRepository.findAll();
     }
 
-    @GetMapping("/findAllBooks/{id}")
-    public Optional<Alimentari> getBook(@PathVariable String id) {
-        return alimentariRepository.findById(id);
+    @GetMapping("/search/data/{data}")
+    public List<Alimentari> searchByData(@PathVariable String data) {
+        List<Alimentari> alimentariList = alimentariRepository.findByData(data);
+        return alimentariList;
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteBook(@PathVariable String id) {
-        alimentariRepository.deleteById(id);
-        return "book deleted with id : " + id;
+    @GetMapping("/search/number/{number}")
+    public List<Alimentari> searchByNumber(@PathVariable int number) {
+        List<Alimentari> alimentariList = alimentariRepository.findByNumber(number);
+        return alimentariList;
     }
+
+    @DeleteMapping("/delete/number/{number}")
+    public void deleteNumber(@PathVariable int number) {
+
+        alimentariRepository.deleteByNumber(number);
+    }
+
+//    @PutMapping(value ="/update/{number}")
+//    public Alimentari updateAlimentare(@PathVariable int number, @RequestBody Alimentari alimentari){
+//        return factService.updateAlimentare(number, alimentari);
+//
+//    }
+
+
+
+
+
+
 
 }
