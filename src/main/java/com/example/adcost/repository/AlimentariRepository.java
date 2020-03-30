@@ -11,7 +11,8 @@ public interface AlimentariRepository extends MongoRepository<Alimentari, String
     List<Alimentari> findByData(String data);
     List<Alimentari> findByNumber(int number);
     void deleteByNumber(int number);
+    List<Alimentari> findByFurnizor(String furnizor);
+    List<Alimentari> findByAuto(String auto);
 
 }
 
-// commit
