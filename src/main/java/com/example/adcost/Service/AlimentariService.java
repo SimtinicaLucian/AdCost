@@ -22,7 +22,22 @@ public class AlimentariService {
         List<Alimentari> alimentareSearch = alimentariRepository.findByNumber(alimentari.getNumber());
 
         if (alimentareSearch.size() >= 1) {
-            return null;
+//            return null;
+
+            Alimentari search = alimentareSearch.get(0);
+            search.setData(alimentari.getData());
+            search.setFurnizor(alimentari.getFurnizor());
+            search.setNumber(alimentari.getNumber());
+            search.setAuto(alimentari.getAuto());
+            search.setSumaTotala(alimentari.getSumaTotala());
+            search.setLitri(alimentari.getLitri());
+            alimentariRepository.deleteByNumber(alimentari.getNumber());
+            alimentari = alimentariRepository.save(search);
+
+
+            return alimentari;
+
+
         }
 
         alimentari = alimentariRepository.save(alimentari);
@@ -42,7 +57,7 @@ public class AlimentariService {
         }
     }
 
-        public List<Alimentari> searchByData(String data) {
+    public List<Alimentari> searchByData(String data) {
         List<Alimentari> searchData = alimentariRepository.findByData(data);
         return searchData;
     }
@@ -76,30 +91,30 @@ public class AlimentariService {
     }
 
 
-    public Alimentari updateAlimentare(int number, Alimentari alimentari){
-        List<Alimentari> numberSearch = alimentariRepository.findByNumber(number);
-        Alimentari search = numberSearch.get(0);
-            search.setData(alimentari.getData());
-            search.setFurnizor(alimentari.getFurnizor());
-            search.setNumber(alimentari.getNumber());
-            search.setAuto(alimentari.getAuto());
-            search.setSumaTotala(alimentari.getSumaTotala());
-            search.setLitri(alimentari.getLitri());
-
-            search = alimentariRepository.save(search);
-            alimentariRepository.deleteByNumber(number);
-
-
-            return search;
-
-
-
-
-
-
-
-
-        }
+//    public Alimentari updateAlimentare(int number, Alimentari alimentari){
+//        List<Alimentari> numberSearch = alimentariRepository.findByNumber(number);
+//        Alimentari search = numberSearch.get(0);
+//        search.setData(alimentari.getData());
+//        search.setFurnizor(alimentari.getFurnizor());
+//        search.setNumber(alimentari.getNumber());
+//        search.setAuto(alimentari.getAuto());
+//        search.setSumaTotala(alimentari.getSumaTotala());
+//        search.setLitri(alimentari.getLitri());
+//
+//        search = alimentariRepository.save(search);
+//        alimentariRepository.deleteByNumber(number);
+//
+//
+//        return search;
+//
+//
+//
+//
+//
+//
+//
+//
+//    }
 
 
 

@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/alimentari/")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AlimentariResource {
 
     @Autowired
@@ -19,6 +20,8 @@ public class AlimentariResource {
     @PostMapping(value = "/add")
     public Alimentari persist(@RequestBody final  Alimentari alimentari){
         return alimService.saveAlimentare(alimentari);
+
+
     }
 
 
@@ -53,17 +56,17 @@ public class AlimentariResource {
     }
 
 
-    @DeleteMapping("/delete/number/{number}")
+    @DeleteMapping(value ="/delete/{number}")
     public void deleteByNumber(@PathVariable  int number){
          alimService.deleteByNumber(number);
     }
 
 
-        @PutMapping(value ="/update/{number}")
-    public Alimentari updateAlimentare(@PathVariable int number, @RequestBody Alimentari alimentari){
-        return alimService.updateAlimentare(number, alimentari);
-
-    }
+//    @PutMapping(value ="/update/{number}")
+//    public Alimentari updateAlimentare(@PathVariable int number, @RequestBody Alimentari alimentari){
+//        return alimService.updateAlimentare(number, alimentari);
+//
+//    }
 
 
 }
