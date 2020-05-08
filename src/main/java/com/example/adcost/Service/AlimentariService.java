@@ -30,7 +30,9 @@ public class AlimentariService {
             search.setNumber(alimentari.getNumber());
             search.setAuto(alimentari.getAuto());
             search.setSumaTotala(alimentari.getSumaTotala());
-            search.setLitri(alimentari.getLitri());
+//            search.setSumaFaraTVA(alimentari.getSumaFaraTVA());
+            search.setTva(alimentari.getTva());
+//            search.setLitri(alimentari.getLitri());
             alimentariRepository.deleteByNumber(alimentari.getNumber());
             alimentari = alimentariRepository.save(search);
 

@@ -23,6 +23,8 @@ public class Service {
     private String auto;
     private String descriere;
     private double sumaTotala;
+    private double sumaFaraTVA;
+    private double sumaTVA;
 
 
     public int getNumber(){
@@ -49,6 +51,14 @@ public class Service {
         return descriere;
     }
 
+    public double getSumaFaraTVA() {
+        return sumaFaraTVA;
+    }
+
+    public double getSumaTVA() {
+        return sumaTVA;
+    }
+
     public void setData(String data) {
         this.data = data;
     }
@@ -73,7 +83,13 @@ public class Service {
         this.descriere = descriere;
     }
 
+    public void setSumaFaraTVA(double sumaFaraTVA) {
+        this.sumaFaraTVA = sumaFaraTVA;
+    }
 
+    public void setSumaTVA(double sumaTVA) {
+        this.sumaTVA = sumaTVA;
+    }
 }
 
 

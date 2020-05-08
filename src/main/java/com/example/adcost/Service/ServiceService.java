@@ -27,6 +27,8 @@ public class ServiceService {
             search.setAuto(service.getAuto());
             search.setSumaTotala(service.getSumaTotala());
             search.setDescriere(service.getDescriere());
+            search.setSumaFaraTVA(service.getSumaFaraTVA());
+            search.setSumaTVA(service.getSumaTVA());
             serviceRepository.deleteByNumber(service.getNumber());
             service = serviceRepository.save(search);
 
